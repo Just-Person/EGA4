@@ -12,11 +12,11 @@ public class MyString {
         this.length = length;
         for (int i = 0; i<mypow(2,length); i++)
         {
-            this.hashMap.put(dectotwo(i,length),i);
+            this.hashMap.put(dectotwo(i,length),mypow(i - mypow(2,length-1),2));
         }
         for (int i = 0; i<mypow(2,length);i++)
         {
-            this.greyMap.put(grey(dectotwo(i,length),1),i);
+            this.greyMap.put(grey(dectotwo(i,length),1),mypow(i - mypow(2,length-1),2));
         }
         this.startposition = startposition;
         this.maxX = grey(dectotwo(startposition,length),1);
@@ -46,13 +46,23 @@ public class MyString {
     public String getIndex ()
     {
         String buffer = "";
+        int max = 0;
+        String maxS = "";
         for (int i = 0; i<this.length; i++)
         {
             buffer = changeIndexString(maxX,i);
             if (geti(buffer)!=null) {
-                return buffer;
+                if (geti(buffer) > max)
+                {
+                    max = geti(buffer);
+                    maxS = buffer;
+                }
             }
         }
+        if (max>this.max)
+        {
+           return maxS;
+        } else
         return null;
     }
     public String changeIndexString(String s, int pos)
@@ -170,17 +180,15 @@ public class MyString {
         }
     }
     public void printhash(){
-        double min = 1000.0;
-        double buffer = 0.0;
+        int min = 10000;
         String index = "";
         for (int j = 0; j < mypow(2, this.length); j++) {
-            min = 1000.0;
+            min = 10000;
             for (int i = 0; i < mypow(2, this.length); i++) {
                 if (hashMap.get(grey(dectotwo(i, this.length), 1)) != null
                         && hashMap.get(grey(dectotwo(i, this.length), 1)) < min) {
                     min = hashMap.get(grey(dectotwo(i, this.length), 1));
                     index = grey(dectotwo(i, this.length), 1);
-
                 }
             }
             if (hashMap.get(index) != null) {

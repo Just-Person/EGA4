@@ -26,27 +26,21 @@ public class Main {
             buffer = myString.getIndex();
             if (buffer!=null)
             {
-                System.out.println("Мы нашли соседнюю строчку - " + buffer);
-                i++;
-                if (myString.geti(buffer) > myString.getMax())
-                {
-                    myString.setMax(myString.geti(buffer));
-                    myString.setMaxX(buffer);
-                    System.out.println("Новый максимум - " + myString.getMaxX() + ", значение - " + myString.getMax());
+                myString.setMax(myString.geti(buffer));
+                myString.setMaxX(buffer);
+                System.out.println("Новый максимум - " + myString.getMaxX() + ", значение - " + myString.getMax());
                 myString.getHashMap().put(myString.getMaxX(),myString.getMax());
-                } else System.out.println("Максимум не поменялся");
-                myString.myremovegrey(buffer);
+                myString.myremovegrey(myString.getMaxX());
+                i++;
             }
             else {
                 i = n + 1;
-                System.out.println("Больше соседей нет!");
+                System.out.println("Мы нашли локальный максимум!");
             }
         }
         System.out.println("Максимальная строчка - " + myString.getMaxX() + ", её значение - " + myString.getMax());
         System.out.print("Наш путь - ");
     myString.printhash();
-    myString.myremovehash(myString.getMaxX());
-   // myString.getHashMap().put(myString.dectotwo(randomstart,7), 0);
     System.out.println();
     System.out.print("После перевода в бинарный код: ");
     System.out.println(myString.greyreverse(myString.getMaxX()) + "------"+myString.getMax());
