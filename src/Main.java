@@ -8,8 +8,8 @@ public class Main {
         System.out.print("Введите количество шагов у программы: ");
         int n = in.nextInt();
         Random rnd = new Random();
-        int randomstart = Math.abs(rnd.nextInt()) % 128;
-        MyString myString = new MyString(7,randomstart);
+        int randomstart = Math.abs(rnd.nextInt()) % 32;
+        MyString myString = new MyString(5,randomstart);
         System.out.println("Точка входа - "+ myString.getMaxX() + "------" + myString.geti(myString.getMaxX()));
         myString.printgrey();
         myString.myremovegrey(myString.getMaxX());
